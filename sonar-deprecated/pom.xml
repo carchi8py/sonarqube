@@ -23,7 +23,16 @@
       <artifactId>jsr305</artifactId>
       <scope>provided</scope>
     </dependency>
-
+    <dependency>
+      <groupId>org.codehaus.sonar</groupId>
+      <artifactId>sonar-squid</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
 
     <!-- unit test -->
     <dependency>

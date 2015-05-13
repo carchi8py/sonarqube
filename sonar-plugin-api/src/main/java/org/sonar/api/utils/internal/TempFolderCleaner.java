@@ -19,14 +19,13 @@
  */
 package org.sonar.api.utils.internal;
 
-import org.picocontainer.Startable;
 import org.sonar.api.BatchSide;
 import org.sonar.api.ServerSide;
 import org.sonar.api.utils.TempFolder;
 
 @BatchSide
 @ServerSide
-public class TempFolderCleaner implements Startable {
+public class TempFolderCleaner /* implements Startable */{
 
   private TempFolder defaultTempFolder;
 
@@ -34,12 +33,10 @@ public class TempFolderCleaner implements Startable {
     this.defaultTempFolder = defaultTempFolder;
   }
 
-  @Override
   public void start() {
     // Nothing to do
   }
 
-  @Override
   public void stop() {
     ((DefaultTempFolder) defaultTempFolder).clean();
   }
