@@ -453,6 +453,16 @@ public class ComponentDaoTest {
   }
 
   @Test
+  public void select_components_from_project() {
+    db.prepareDbUnit(getClass(), "multi-modules.xml");
+
+    List<ComponentDto> components = sut.selectComponentsFromProjectUuid(session, "ABCD");
+    assertThat(components).hasSize(5);
+
+    assertThat(sut.selectComponentsFromProjectUuid(session, "UNKNOWN")).isEmpty();
+  }
+
+  @Test
   public void insert() {
     db.prepareDbUnit(getClass(), "empty.xml");
 
@@ -469,6 +479,7 @@ public class ComponentDaoTest {
       .setQualifier("FIL")
       .setScope("FIL")
       .setLanguage("java")
+      .setDescription("description")
       .setPath("src/org/struts/RequestContext.java")
       .setParentProjectId(3L)
       .setCopyResourceId(5L)

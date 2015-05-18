@@ -212,15 +212,24 @@
     </where>
   </select>
 
+  <select id="selectComponentsFromProjectUuid" parameterType="map" resultType="Component">
+    SELECT <include refid="componentColumns"/>
+    FROM projects p
+    <where>
+      AND p.project_uuid=#{projectUuid}
+      AND p.enabled=${_true}
+    </where>
+  </select>
+
   <sql id="insertColumns">
-    (kee, deprecated_kee, uuid, project_uuid, module_uuid, module_uuid_path, name, long_name, qualifier, scope, language, root_id, path, copy_resource_id, enabled,
+    (kee, deprecated_kee, uuid, project_uuid, module_uuid, module_uuid_path, name, long_name, qualifier, scope, language, description, root_id, path, copy_resource_id, enabled,
     created_at, authorization_updated_at)
   </sql>
 
   <insert id="insert" parameterType="Component" keyColumn="id" useGeneratedKeys="true" keyProperty="id">
     insert into projects <include refid="insertColumns"/>
     values (#{kee}, #{deprecatedKey}, #{uuid}, #{projectUuid}, #{moduleUuid}, #{moduleUuidPath}, #{name}, #{longName}, #{qualifier}, #{scope},
-    #{language}, #{parentProjectId}, #{path}, #{copyResourceId}, #{enabled}, #{createdAt}, #{authorizationUpdatedAt})
+    #{language}, #{description}, #{parentProjectId}, #{path}, #{copyResourceId}, #{enabled}, #{createdAt}, #{authorizationUpdatedAt})
   </insert>
 
   <select id="selectProvisionedProjects" parameterType="map" resultType="Component">

@@ -94,6 +94,11 @@ public interface ComponentMapper {
   List<UuidWithProjectUuidDto> selectUuidsForQualifiers(@Param("qualifiers") String... qualifiers);
 
   /**
+   * Return all components of a project
+   */
+  List<ComponentDto> selectComponentsFromProjectUuid(@Param("projectUuid") String projectUuid);
+
+  /**
    * Return technical projects from a view or a sub-view
    */
   List<String> selectProjectsFromView(@Param("viewUuidLikeQuery") String viewUuidLikeQuery, @Param("projectViewUuid") String projectViewUuid);

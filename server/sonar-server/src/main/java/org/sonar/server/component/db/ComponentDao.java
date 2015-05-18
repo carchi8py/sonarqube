@@ -136,6 +136,10 @@ public class ComponentDao implements DaoComponent {
     });
   }
 
+  public List<ComponentDto> selectComponentsFromProjectUuid(DbSession session, String projectKey) {
+    return mapper(session).selectComponentsFromProjectUuid(projectKey);
+  }
+
   public List<ComponentDto> selectByKeys(DbSession session, Collection<String> keys) {
     return mapper(session).findByKeys(keys);
   }
